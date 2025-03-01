@@ -8,6 +8,14 @@ function register() {
         return;
     }
 
+    let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]{2,}\.[a-zA-Z]{2,}$/;
+    // For common TLDs use the regex below
+    // let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]{2,}\.(com|net|org|edu|gov|mil|info|io|co|biz)$/; 
+    if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address!");
+        return;
+    }
+
     let users = JSON.parse(localStorage.getItem("users")) || [];
 
     let existingUser = users.find(user => user.email === email);
@@ -21,6 +29,7 @@ function register() {
     alert("Registration successful! You can now log in.");
     window.location.href = "login.html";
 }
+
 
 function login() {
     let email = document.getElementById("loginEmail").value;
